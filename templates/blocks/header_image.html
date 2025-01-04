@@ -1,0 +1,36 @@
+{% load static %}
+<div class="row">
+                <div class="col-2">
+                    {% if user.is_authenticated %}
+                    <h2> Welcome {{user.username}}!</h2>
+                    <h3>
+{% if messages %}
+    <div class="alert alert-dismissible fade show" role="alert">
+        {% for message in messages %}
+            <div class="alert
+                {% if message.tags == 'success' %} alert-success
+                {% elif message.tags == 'error' %} alert-danger
+                {% elif message.tags == 'info' %} alert-info
+                {% elif message.tags == 'warning' %} alert-warning
+                {% else %} alert-primary {% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+                    </h3>
+                    <a href="{% url 'product_app:list_products' %}" class="btn">Explore Now &#8594;</a>
+                    {% else %}
+                    <h1>Give Your Workout <br> A New Style!</h1>
+                    <p>Success isn't always about greatness. It;s about consistency. Consistent <br> hard work gains
+                        success. Greatness will come.</p>
+                    <a href="{% url 'customer_app:register_login' %}" class="btn">Register/Login &#8594;</a>
+                    {% endif %}
+
+                </div>
+                <div class="col-2">
+                    <img src="{% static 'images/image1.png' %}">
+                </div>
+            </div>
+

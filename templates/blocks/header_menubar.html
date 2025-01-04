@@ -1,0 +1,34 @@
+{% load static %}
+<div class="navbar">
+                <div class="logo-border">
+
+                     <div class="logo">
+                    <a href="{% url 'flipcart_app:index' %}"><img src="{% static 'images/lo2ge.gif' %}" class="logo"></a>
+                     </div>
+                     <div class="logo-text">
+
+
+<!--                        <h1>Gusto Dude</h1>-->
+                    </div>
+                </div>
+
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="{% url 'flipcart_app:index' %}">Home</a></li>
+                        <li><a href="{% url 'product_app:list_products' %}">Products</a></li>
+<!--                        <li><a href="">About</a></li>-->
+<!--                        <li><a href="">Contact</a></li>-->
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'order_app:cart_items'%} "><img class="cart-btn" src="{% static 'images/cart.png' %}" width="30px" height="30px"></a></li>
+                        <li><a href="{% url 'customer_app:register_logout' %}"><button class="btn">Logout</button></a></li>
+
+
+                        {% else %}
+                        <li><a href="{% url 'customer_app:register_login' %}">Register/Login</a></li>
+
+                        {% endif %}
+                    </ul>
+                </nav>
+
+                <img src="{% static 'images/menu.png' %}" class="menu-icon" onclick="menutoggle()">
+ </div>

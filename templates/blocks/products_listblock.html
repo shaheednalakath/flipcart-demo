@@ -1,0 +1,95 @@
+{% load static %}
+{% load splitter %}
+
+ <div class="small-container">
+        <div class="row row-2">
+            <h2>All Products</h2>
+            <select>
+                <option>Default Sort</option>
+                <option>Sort By Price</option>
+                <option>Sort By Popularity</option>
+                <option>Sort By Rating</option>
+                <option>Sort By Sale</option>
+            </select>
+        </div>
+        {% for row in products|splitter:4 %}
+
+        <div class="row">
+            {% for product in row %}
+            <div class="col-4">
+                <a href="{% url 'product_app:single_product_details' product.id %}"><img src= "{{product.images.url}}"></a>
+                <h4>{{product.title}}</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>{{product.price}}</p>
+            </div>
+
+            {% endfor %}
+        </div>
+         {% endfor %}
+        <div class="page-btn">
+            {% if products.has_previous %}
+             <a href="?page={{ products.previous_page_number }}"><span>&#8592;</span></a>
+            {% endif %}
+            {% for page_num in products.paginator.page_range %}
+            <a href="?page={{page_num}}"><span>{{page_num}}</span></a>
+
+            {% endfor %}
+            {% if products.has_next %}
+             <a href="?page={{ products.next_page_number }}"><span>&#8594;</span></a>
+            {% endif %}
+
+        </div>
+<!--     <div class="page-btn">-->
+<!--    &lt;!&ndash; Show Previous Button Only If Not on First Page &ndash;&gt;-->
+<!--    {% if products.has_previous %}-->
+<!--        <a href="?page={{ products.previous_page_number }}"><span>&#8592;</span></a>-->
+<!--    {% else %}-->
+<!--        &lt;!&ndash; Empty space or disabled Previous button (optional) &ndash;&gt;-->
+<!--        <span class="disabled">&#8592;</span>-->
+<!--    {% endif %}-->
+
+<!--    &lt;!&ndash; Display Pagination Links &ndash;&gt;-->
+<!--    {% for page_num in products.paginator.page_range %}-->
+<!--        {% if page_num == products.number %}-->
+<!--            <span class="active">{{ page_num }}</span> &lt;!&ndash; Highlight Current Page &ndash;&gt;-->
+<!--        {% else %}-->
+<!--            <a href="?page={{ page_num }}">{{ page_num }}</a>-->
+<!--        {% endif %}-->
+<!--    {% endfor %}-->
+
+<!--    &lt;!&ndash; Show Next Button Only If Not on Last Page &ndash;&gt;-->
+<!--    {% if products.has_next %}-->
+<!--        <a href="?page={{ products.next_page_number }}"><span>&#8594;</span></a>-->
+<!--    {% else %}-->
+<!--        &lt;!&ndash; Empty space or disabled Next button (optional) &ndash;&gt;-->
+<!--        <span class="disabled">&#8594;</span>-->
+<!--    {% endif %}-->
+<!--</div>-->
+
+
+<!--     <div class="page-btn">-->
+<!--    {% if products.has_previous %}-->
+<!--        <a href="?page={{ products.previous_page_number }}" class="prev-btn"><<</a>-->
+<!--    {% endif %}-->
+
+<!--    {% for page_num in products.paginator.page_range %}-->
+<!--        {% if page_num == products.number %}-->
+<!--            <span class="active">{{ page_num }}</span>-->
+<!--        {% else %}-->
+<!--            <a href="?page={{ page_num }}">{{ page_num }}</a>-->
+<!--        {% endif %}-->
+<!--    {% endfor %}-->
+
+<!--    {% if products.has_next %}-->
+<!--        <a href="?page={{ products.next_page_number }}" class="next-btn" > >></a>-->
+<!--    {% endif %}-->
+<!--</div>-->
+
+
+    </div>

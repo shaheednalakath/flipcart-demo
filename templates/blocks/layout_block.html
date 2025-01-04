@@ -1,0 +1,116 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedStore | Ecommerce Website Design</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      .logo-text{
+
+      }
+     .logo-border{
+        margin:10px;
+        border-radius:10px;
+        background-color:;
+        width: 200px;             /* Set the width for the logo */
+        height: 100px;
+     }
+    .logo {
+
+        width: 100px;             /* Set the width for the logo */
+        height: 80px;            /* Set the height for the logo */
+        border-radius: 10px;      /* Make the corners fully rounded */
+        object-fit: cover;       /* Ensure the image scales correctly */
+        border: 2px solid #ddd;  /* Optional: Add a light border around the logo */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animation */
+    }
+
+    .logo:hover {
+<!--        transform: scale(1.1);   /* Slight enlargement on hover */-->
+<!--        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */-->
+<!--        transform: rotate(360deg); /* Full rotation on hover */-->
+<!--        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);-->
+    }
+</style>
+</head>
+
+<body>
+<!--header-->
+<div class="header">
+        <div class="container">
+            {% block header_menubar %}
+
+            {% endblock header_menubar %}
+
+
+           {% block header_image %}
+
+           {% endblock header_image %}
+        </div>
+</div>
+
+
+
+
+
+     {% block products_listblock %}
+
+    {% endblock products_listblock %}
+
+    <!-- Feadtued Categories -->
+
+
+    {% block featured_blocks %}
+
+    {% endblock featured_blocks %}
+
+    <!-- Featured Products -->
+
+
+
+
+<!--        products load-->
+    {% block product_block %}
+
+    {% endblock product_block %}
+
+
+<!--    brand block-->
+    {% block brand_block %}
+
+    {% endblock brand_block %}
+
+
+    <!-- Testimonial -->
+
+    {% block testimonial_block %}
+
+    {% endblock testimonial_block %}
+
+
+    <!-- Brands -->
+
+
+    {% block newbrands_blocks %}
+
+    {% endblock newbrands_blocks %}
+
+    <!-- Footer -->
+    {% block footer %}
+    {% include 'blocks/footer.html' %}
+    {% endblock footer %}
+    <!-- javascript -->
+
+    <script src="{% static 'js/getmenu.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<!--{% load static %}-->
+<!--<div class="account-page">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-2">-->
+<!--                <img src="{% static 'images/image1.png' %}" width="100%">-->
+<!--            </div>-->
+<!--            <div class="col-5">-->
+<!--                <div class="form-container">-->
+<!--                    <div class="form-btn">-->
+<!--                        <span onclick="login()">Login</span>-->
+<!--                        <span onclick="register()">Register</span>-->
+<!--                        <hr id="Indicator">-->
+<!--                    </div>-->
+<!--                    <form id="LoginForm" method="post" enctype="multipart/form-data">-->
+<!--                        {% csrf_token %}-->
+<!--                        <input type="text" name="username" required placeholder="Username">-->
+<!--                        <input type="password" name="password" required placeholder="Password">-->
+<!--                        <button type="submit" name="submit_login" class="btn">Login</button>-->
+<!--                        <a href="">Forget Password</a>-->
+<!--                    </form>-->
+
+<!--                    <form id="RegForm" method="post" enctype="multipart/form-data">-->
+<!--                        {% csrf_token %}-->
+<!--                        <input type="text" name="username" required placeholder="Username">-->
+<!--                        <input type="email" name="email" required placeholder="Email">-->
+<!--                        <input type="password" name="password" required placeholder="Password">-->
+<!--                        <input type="text" name="address" required placeholder="Address">-->
+<!--                        <input type="number" name="phone" id="phone" required placeholder="Phone">-->
+<!--                        <button type="submit" name="submit_register" class="btn">Register</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--<script>-->
+<!--    var LoginForm = document.getElementById("LoginForm");-->
+<!--    var RegForm = document.getElementById("RegForm");-->
+<!--    var Indicator = document.getElementById("Indicator");-->
+
+<!--    function register() {-->
+<!--        RegForm.style.transform = "translateX(0px)";-->
+<!--        LoginForm.style.transform = "translateX(0px)";-->
+<!--        Indicator.style.transform = "translateX(100px)";-->
+<!--    }-->
+
+<!--    function login() {-->
+<!--        RegForm.style.transform = "translateX(300px)";-->
+<!--        LoginForm.style.transform = "translateX(300px)";-->
+<!--        Indicator.style.transform = "translateX(0px)";-->
+<!--    }-->
+<!--</script>-->
+{% load static %}
+<div class="account-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <img src="{% static 'images/image1.png' %}" width="100%">
+            </div>
+            <div class="col-5">
+                <div class="form-container">
+                    <div class="form-btn">
+                        <span onclick="login()">Login</span>
+                        <span onclick="register()">Register</span>
+                        <hr id="Indicator">
+                    </div>
+
+                    {% if messages %}
+                    <div class="message-container">
+                        {% for message in messages %}
+                        <div class="message" style="color: red; margin-bottom: 10px;">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <form id="LoginForm" method="post" enctype="multipart/form-data" >
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{request.GET.next}}" >
+                        <input type="text" name="username" required placeholder="Username">
+                        <input type="password" name="password" required placeholder="Password">
+                        <button type="submit" name="submit_login" class="btn">Login</button>
+                        <a href="">Forget Password</a>
+                    </form>
+
+                    <form id="RegForm" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="text" name="username" required placeholder="Username">
+                        <input type="email" name="email" required placeholder="Email">
+                        <input type="password" name="password" required placeholder="Password">
+                        <input type="text" name="address" required placeholder="Address">
+                        <input type="number" name="phone" id="phone" required placeholder="Phone">
+                        <button type="submit" name="submit_register" class="btn">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var LoginForm = document.getElementById("LoginForm");
+    var RegForm = document.getElementById("RegForm");
+    var Indicator = document.getElementById("Indicator");
+
+    function register() {
+        RegForm.style.transform = "translateX(0px)";
+        LoginForm.style.transform = "translateX(0px)";
+        Indicator.style.transform = "translateX(100px)";
+    }
+
+    function login() {
+        RegForm.style.transform = "translateX(300px)";
+        LoginForm.style.transform = "translateX(300px)";
+        Indicator.style.transform = "translateX(0px)";
+    }
+</script>
+<style>
+    .form-container {
+        position: relative;
+        min-width:300px ;
+        min-height: 500px; /* Adjust as needed */
+        transition: all 0.3s ease-in-out;
+    }
+    form {
+        width: 100%;
+        display: flex;
+        align-items:center;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .btn {
+        margin-top: 10px;
+        padding: 10px;
+    }
+    .message-container {
+    margin-bottom: 20px;
+}
+
+.message {
+    color: red;
+    font-size: 14px;
+}
+
+</style>
+
+{% if register %}
+<script>
+register()
+</script>
+{% else %}
+<script>
+login()
+</script>
+{% endif %}

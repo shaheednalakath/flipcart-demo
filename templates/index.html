@@ -1,0 +1,49 @@
+{% extends 'blocks/layout_block.html' %}
+
+
+<!--header session-->
+{% block header_menubar %}
+{% include "blocks/header_menubar.html" %}
+{% endblock header_menubar %}
+
+
+           {% block header_image %}
+           {% include "blocks/header_image.html" %}
+
+           {% endblock header_image %}
+
+
+
+    <!-- latest block -->
+
+    {% block featured_blocks %}
+    {% include 'blocks/featured_blocks.html' %}
+    {% endblock featured_blocks %}
+
+
+
+<!--featured block-->
+    {% block product_block %}
+    {% include 'blocks/product_block.html' %}
+    {% endblock product_block %}
+
+
+<!--    brand block-->
+    {% block brand_block %}
+    {% include 'blocks/brand_block.html' %}
+    {% endblock brand_block %}
+
+
+    <!-- Testimonial -->
+
+    {% block testimonial_block %}
+    {% include 'blocks/testimonial_block.html' %}
+    {% endblock testimonial_block %}
+
+
+    <!-- Brands -->
+
+
+    {% block newbrands_blocks %}
+    {% include 'blocks/newbrands_blocks.html' %}
+    {% endblock newbrands_blocks %}
